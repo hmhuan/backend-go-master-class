@@ -43,6 +43,9 @@ jobs:
 
     - name: Run migration
       run: make migrateup
+      env:
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
 
     - name: Test
       run: make test
