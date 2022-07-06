@@ -2,7 +2,7 @@ name: ci-test
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "!master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -54,5 +54,8 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.NOTI_BOT_WEBHOOK_URL }}
         SLACK_BOT_NAME: "noti-bot"
+      with:
+        status: ${{ job.status }}
+        notify_when: 'failure'
       run: |
         curl -X POST --data-urlencode "payload={\"channel\": \"#notibot\", \"username\": \"noti-bot\", \"text\": \"This is posted to #notibot and comes from a bot named noti-bot.\", \"icon_emoji\": \":ghost:\"}" $SLACK_WEBHOOK_URL
