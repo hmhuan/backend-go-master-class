@@ -9,3 +9,8 @@
 - Implementing Transactions
 - Transaction Isolation Levels and Read phenomena
 - Github Action and setup CI testing
+- [Viper](https://github.com/spf13/viper)
+    - support: JSON, YAML, TOML, ENV, INI
+    - Read configuration from environment variables or flags
+    - Read from remote system
+    - Live watching and writing configuration files

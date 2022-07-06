@@ -6,17 +6,17 @@ import (
 
 	"github.com/hmhuan/backend-go-master-class/api"
 	db "github.com/hmhuan/backend-go-master-class/db/sqlc"
+	"github.com/hmhuan/backend-go-master-class/util"
 	_ "github.com/lib/pq"
 )
 
-const (
-	dbDriver      = "postgres"
-	dbSource      = "postgres://root:secret@localhost:5432/simple_bank?sslmode=disable"
-	serverAddress = "0.0.0.0:8080"
-)
-
 func main() {
-	dbConn, err := sql.Open(dbDriver, dbSource)
+	config, err := util.LoadConfig(".")
+	if err != nil {
+		log.Fatal("Failed to load configuration", err)
+	}
+
+	dbConn, err := sql.Open(config.DbDriver, config.DbSource)
 	if err != nil {
 		log.Fatal("failed to connect to database: ", err)
 	}
@@ -24,7 +24,7 @@ func main() {
 	store := db.NewStore(dbConn)
 	server := api.NewServer(store)
 
-	err = server.Start(serverAddress)
+	err = server.Start(config.ServerAddress)
 	if err != nil {
 		log.Fatal("failed to start server: ", err)
 	}

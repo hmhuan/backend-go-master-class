@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hmhuan/backend-go-master-class/db/util"
+	"github.com/hmhuan/backend-go-master-class/util"
 	"github.com/stretchr/testify/require"
 )
 
@@ -83,5 +83,5 @@ func TestDeleteAccount(t *testing.T) {
 }
 
 func TestGetAccounts(t *testing.T) {
-	
+
 }
