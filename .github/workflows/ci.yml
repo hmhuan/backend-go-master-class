@@ -11,6 +11,18 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_USER=root
+          POSTGRES_PASSWORD=secret
+          POSTGRES_DB=simple_bank
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-retries 3
+          --health-timeout 5s
     steps:
 
     - name: Set up Go
@@ -22,6 +34,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       id: checkout
+
+    - name: Install golang migrate
+      run: |
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz
+        sudo mv migrate.linux-amd64 /usr/bin/migrate
+        which migrate
+
+    - name: Run migration
+      run: make migrateup
 
     - name: Test
       run: make test
