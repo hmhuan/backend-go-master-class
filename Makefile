@@ -19,4 +19,7 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgreq createdb drobdb migrateup migratedown sqlc test
+server:
+	go run main.go
+
+.PHONY: postgreq createdb drobdb migrateup migratedown sqlc test server
