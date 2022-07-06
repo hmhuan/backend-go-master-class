@@ -23,6 +23,8 @@ jobs:
           --health-interval 10s
           --health-retries 3
           --health-timeout 5s
+        ports:
+          - 5432:5432
     steps:
 
     - name: Set up Go
@@ -43,9 +45,6 @@ jobs:
 
     - name: Run migration
       run: make migrateup
-      env:
-        POSTGRES_HOST: localhost
-        POSTGRES_PORT: 5432
 
     - name: Test
       run: make test
