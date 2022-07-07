@@ -20,13 +20,13 @@ func (server *Server) createAccount(ctx *gin.Context) {
 		return
 	}
 
-	params := db.CreateAccountParams{
+	arg := db.CreateAccountParams{
 		Owner:    req.Owner,
 		Currency: req.Currency,
 		Balance:  int64(0),
 	}
 
-	account, err := server.store.CreateAccount(ctx, params)
+	account, err := server.store.CreateAccount(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 	}
