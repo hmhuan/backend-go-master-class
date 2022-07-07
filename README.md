@@ -14,3 +14,7 @@
     - Read configuration from environment variables or flags
     - Read from remote system
     - Live watching and writing configuration files
+- [Go Mock](https://github.com/golang/mock)
+    - Add Store interface
+    - regenerate sqlc: update sqlc.yml with value emit_interface
+    - mockgen 

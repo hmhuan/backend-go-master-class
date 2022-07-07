@@ -31,7 +31,7 @@ func RandomBalance() int64 {
 }
 
 func RandomCurrency() string {
-	currencies := []string{"USD", "JPY", "VND", "CAD", "EUR"}
+	currencies := []string{"USD", "EUR", "VND"}
 	n := len(currencies)
 	return currencies[rand.Intn(n)]
 }

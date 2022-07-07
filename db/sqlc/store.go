@@ -6,20 +6,25 @@ import (
 	"fmt"
 )
 
-type Store struct {
+type Store interface {
+	Querier
+	TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error)
+}
+
+type DBStore struct {
 	*Queries
 	db *sql.DB
 }
 
-func NewStore(db *sql.DB) *Store {
-	return &Store{
+func NewStore(db *sql.DB) Store {
+	return &DBStore{
 		Queries: New(db),
 		db:      db,
 	}
 }
 
 // executes a function within a db transaction
-func (store *Store) execTx(ctx context.Context, fn func(*Queries) error) error {
+func (store *DBStore) execTx(ctx context.Context, fn func(*Queries) error) error {
 	tx, err := store.db.BeginTx(ctx, nil)
 
 	if err != nil {
@@ -53,7 +58,7 @@ type TransferTxResult struct {
 	ToEntry     Entry    `json:"to_entry"`
 }
 
-func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
+func (store *DBStore) TransferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
 	var result TransferTxResult
 
 	err := store.execTx(ctx, func(q *Queries) error {
@@ -90,12 +95,12 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 		}
 
 		// update accounts balance
-		if (arg.FromAccountID < arg.ToAccountID) {
+		if arg.FromAccountID < arg.ToAccountID {
 			result.FromAccount, result.ToAccount, err = updateBalances(ctx, q, arg.FromAccountID, arg.ToAccountID, arg.Amount)
 		} else {
 			result.ToAccount, result.FromAccount, err = updateBalances(ctx, q, arg.ToAccountID, arg.FromAccountID, -arg.Amount)
 		}
-	
+
 		if err != nil {
 			return err
 		}
@@ -107,10 +112,10 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams) (Trans
 }
 
 func updateBalances(
-	ctx context.Context, 
-	q *Queries, 
-	accountID1 int64, 
-	accountID2 int64, 
+	ctx context.Context,
+	q *Queries,
+	accountID1 int64,
+	accountID2 int64,
 	amount int64,
 ) (account1 Account, account2 Account, err error) {
 	account1, err = q.AddAccountBalance(ctx, AddAccountBalanceParams{
