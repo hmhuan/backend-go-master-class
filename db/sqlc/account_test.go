@@ -81,7 +81,3 @@ func TestDeleteAccount(t *testing.T) {
 	require.EqualError(t, err, sql.ErrNoRows.Error())
 	require.Empty(t, deletedAccount)
 }
-
-func TestGetAccounts(t *testing.T) {
-
-}
