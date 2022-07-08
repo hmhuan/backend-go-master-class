@@ -18,3 +18,4 @@
     - Add Store interface
     - regenerate sqlc: update sqlc.yml with value emit_interface
     - mockgen 
+- bcrypt hash password and user API
