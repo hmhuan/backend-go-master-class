@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/hmhuan/backend-go-master-class/api"
-	db "github.com/hmhuan/backend-go-master-class/db/sqlc"
-	"github.com/hmhuan/backend-go-master-class/util"
+	"github.com/hmhuan/simple-bank/api"
+	db "github.com/hmhuan/simple-bank/db/sqlc"
+	"github.com/hmhuan/simple-bank/util"
 	_ "github.com/lib/pq"
 )
 

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	db "github.com/hmhuan/backend-go-master-class/db/sqlc"
-	"github.com/hmhuan/backend-go-master-class/util"
+	db "github.com/hmhuan/simple-bank/db/sqlc"
+	"github.com/hmhuan/simple-bank/util"
 	"github.com/lib/pq"
 )
 

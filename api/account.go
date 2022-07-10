@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	db "github.com/hmhuan/backend-go-master-class/db/sqlc"
+	db "github.com/hmhuan/simple-bank/db/sqlc"
 	"github.com/lib/pq"
 )
 

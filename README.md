@@ -1,4 +1,4 @@
-# backend-go-master-class
+# simple-bank
 
 - [dbdiagram](https://dbdiagram.io/d/62c410e669be0b672ca1180f) 
 - [TablePlus](https://tableplus.com/)

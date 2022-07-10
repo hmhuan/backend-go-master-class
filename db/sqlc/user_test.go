@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/hmhuan/backend-go-master-class/util"
+	"github.com/hmhuan/simple-bank/util"
 	"github.com/stretchr/testify/require"
 )
 
