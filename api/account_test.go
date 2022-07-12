@@ -73,7 +73,7 @@ func TestCreateAccount(t *testing.T) {
 
 			tc.buildStubs(mockStore)
 
-			server := NewServer(mockStore)
+			server := newTestServer(t, mockStore)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts")
@@ -157,7 +157,7 @@ func TestGetAccount(t *testing.T) {
 
 			tc.buildStubs(mockStore)
 
-			server := NewServer(mockStore)
+			server := newTestServer(t, mockStore)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts/%d", tc.accountID)
@@ -247,7 +247,7 @@ func TestGetListAccount(t *testing.T) {
 
 			tc.buildStubs(mockStore)
 
-			server := NewServer(mockStore)
+			server := newTestServer(t, mockStore)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts?page=%d&size=%d", tc.page, tc.size)
