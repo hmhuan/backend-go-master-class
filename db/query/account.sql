@@ -22,10 +22,10 @@ WHERE id = sqlc.arg(id)
 RETURNING *;
 
 -- name: GetAccounts :many
-SELECT * FROM accounts
+SELECT * FROM accounts WHERE owner = $1
 ORDER BY id
-LIMIT $1
-OFFSET $2;
+LIMIT $2
+OFFSET $3;
 
 -- name: UpdateAccount :one
 UPDATE accounts
