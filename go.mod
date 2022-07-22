@@ -16,6 +16,11 @@ require (
 )
 
 require (
+	github.com/myesui/uuid v1.0.0 // indirect
+	gopkg.in/stretchr/testify.v1 v1.2.2 // indirect
+)
+
+require (
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/aead/chacha20poly1305 v0.0.0-20170617001512-233f39982aeb // indirect
 	github.com/aead/poly1305 v0.0.0-20180717145839-3fee0db0b635 // indirect
